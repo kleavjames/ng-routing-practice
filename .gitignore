@@ -107,13 +107,6 @@ typings/
 # Serverless directories
 .serverless
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -138,6 +131,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+**/.git
+**/.DS_Store
+**/app/**/*.js
+**/*.map
 
 
 # End of https://www.gitignore.io/api/node,angular,windows,visualstudiocode
