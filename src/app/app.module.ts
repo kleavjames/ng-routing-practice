@@ -15,20 +15,17 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
+import { AppRouteModule } from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
-    RouterModule.forRoot([
-      { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', component: PageNotFoundComponent }
-    ]),
+    InMemoryWebApiModule.forRoot(ProductData, { delay: 100 }),
     ProductModule,
     UserModule,
-    MessageModule
+    MessageModule,
+    AppRouteModule
   ],
   declarations: [
     AppComponent,
