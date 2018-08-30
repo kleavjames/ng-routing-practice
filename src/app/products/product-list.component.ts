@@ -29,10 +29,14 @@ export class ProductListComponent implements OnInit {
         this.listFilter = this.route.snapshot.queryParams['filterBy'] || '';
         this.showImage = this.route.snapshot.queryParams['showImage'] === 'true';
 
-        this.productService.getProducts()
-                .subscribe(
-                    products => this.products = products,
-                    error => this.errorMessage = <any>error
-                );
+        // this.productService.getProducts()
+        //         .subscribe(
+        //             products => this.products = products,
+        //             error => this.errorMessage = <any>error
+        //         );
+
+        this.route.data.subscribe(
+            data => this.products = data['products']
+        )
     }
 }

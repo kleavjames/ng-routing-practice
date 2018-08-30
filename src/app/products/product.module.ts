@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductEditTagsComponent } from './product-edit-tags.component';
 import { ProductEditInfoComponent } from './product-edit-info.component';
 import { ProductEditGuard } from './product-edit.guard';
+import { ProductListResolver } from './product-list-resolver.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ProductEditGuard } from './product-edit.guard';
       //   children: [
           {
             path: '',
-            component: ProductListComponent
+            component: ProductListComponent,
+            resolve: { products: ProductListResolver }
           },
           {
             path: ':id',
@@ -55,6 +57,7 @@ import { ProductEditGuard } from './product-edit.guard';
   ],
   providers: [
     ProductService,
+    ProductListResolver,
     ProductResolver,
     ProductEditGuard
   ]
