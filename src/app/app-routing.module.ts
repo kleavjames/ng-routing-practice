@@ -13,7 +13,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes) // {enableTracing: true} to trace every routing events
   ],
   exports: [ RouterModule ],
   providers: [],
