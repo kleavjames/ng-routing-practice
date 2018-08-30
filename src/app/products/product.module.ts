@@ -10,6 +10,8 @@ import { ProductService } from './product.service';
 import { ProductResolver } from './product-resolver.service';
 
 import { SharedModule } from '../shared/shared.module';
+import { ProductEditTagsComponent } from './product-edit-tags.component';
+import { ProductEditInfoComponent } from './product-edit-info.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,12 @@ import { SharedModule } from '../shared/shared.module';
       {
         path: 'products/:id/edit',
         component: ProductEditComponent,
-        resolve: { product: ProductResolver }
+        resolve: { product: ProductResolver },
+        children: [
+          { path: 'info', component: ProductEditInfoComponent },
+          { path: '', redirectTo: 'info', pathMatch: 'full' },
+          { path: 'tags', component: ProductEditTagsComponent }
+        ]
       }
     ])
   ],
@@ -32,7 +39,9 @@ import { SharedModule } from '../shared/shared.module';
     ProductListComponent,
     ProductDetailComponent,
     ProductEditComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    ProductEditInfoComponent,
+    ProductEditTagsComponent
   ],
   providers: [
     ProductService,
