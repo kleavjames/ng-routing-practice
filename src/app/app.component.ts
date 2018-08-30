@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 import { AuthService } from './user/auth.service';
+import { MessageService } from './messages/message.service';
 
 @Component({
     selector: 'pm-app',
@@ -12,19 +13,14 @@ export class AppComponent implements OnInit {
     loading: boolean = true;
 
     constructor(private authService: AuthService,
-                private router: Router) {
+                private router: Router,
+                private messageService: MessageService) {
     }
 
     ngOnInit() {
         this.router.events.subscribe((routerEvent: Event) => {
             this.checkRouterEvent(routerEvent);
         });
-    }
-
-    logOut(): void {
-        this.authService.logout();
-        console.log('Log out');
-        this.router.navigateByUrl('/welcome');
     }
 
     checkRouterEvent(routerEvent: Event): void {
@@ -35,5 +31,21 @@ export class AppComponent implements OnInit {
         if (routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel || routerEvent instanceof NavigationError) {
             this.loading = false;
         }
+    }
+
+    displayMessage(): void {
+        this.router.navigate([{ outlets: { popup: ['messages'] } }]);
+        this.messageService.isDisplayed = true;
+    }
+
+    hideMessage(): void {
+        this.router.navigate([{ outlets: { popup: null } }]);
+        this.messageService.isDisplayed = false;
+    }
+
+    logOut(): void {
+        this.authService.logout();
+        console.log('Log out');
+        this.router.navigateByUrl('/welcome');
     }
 }
